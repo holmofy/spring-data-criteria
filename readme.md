@@ -1,4 +1,17 @@
-`Spring Data Jdbc Criteria` extends Spring Data JDBC to support dynamic sql
+`Spring Data Jdbc Criteria` extends Spring Data JDBC to support dynamic sql. like this:
+
+```java
+default Page<User> searchByQuery(UserQuery query, Pageable pageable) {
+    return findAll(Criteria.from(MoreCriteria.eq(User_.province, query.province))
+                    .and(MoreCriteria.eq(User_.city, query.city))
+                    .and(MoreCriteria.like(User_.area, query.area))
+                    .and(MoreCriteria.like(User_.name, query.nick))
+                    .and(MoreCriteria.between(User_.created, query.createFrom, query.createTo))
+            , pageable);
+}
+```
+
+It will dynamically generate sql based on whether the query field is empty.
 
 ## How to use 
 
