@@ -1,9 +1,9 @@
 package io.github.holmofy.example;
 
-import io.github.holmofy.data.SpringDataRelationalAnnotationProcessor;
 import com.google.testing.compile.Compilation;
 import com.google.testing.compile.Compiler;
 import com.google.testing.compile.JavaFileObjects;
+import io.github.holmofy.data.jdbc.apt.SpringDataRelationalAnnotationProcessor;
 import org.junit.Test;
 
 import static com.google.testing.compile.CompilationSubject.assertThat;
