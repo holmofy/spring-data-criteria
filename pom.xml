@@ -22,12 +22,6 @@
         <module>spring-data-jdbc-criteria-example</module>
     </modules>
 
-    <parent>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-relational-parent</artifactId>
-        <version>3.0.0</version>
-    </parent>
-
     <groupId>io.github.holmofy</groupId>
     <artifactId>spring-data-jdbc-criteria</artifactId>
     <version>3.0.0</version>
