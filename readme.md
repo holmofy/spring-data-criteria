@@ -144,4 +144,6 @@ public class UserController {
 }
 ```
 
+The complete example is [here](https://github.com/holmofy/spring-data-jdbc-criteria/tree/master/spring-data-jdbc-criteria-example).
+
 If you think it's good, please give this project a star.
