@@ -18,8 +18,8 @@ It will dynamically generate sql based on whether the query field is empty.
 1、add dependency
 ```xml
 <dependency>
-    <groupId>io.github.holmofy.data.jdbc</groupId>
-    <artifactId>criteria-core</artifactId>
+    <groupId>io.github.holmofy</groupId>
+    <artifactId>spring-data-jdbc-criteria-core</artifactId>
     <version>3.0.0</version>
 </dependency>
 ```
@@ -37,8 +37,8 @@ It will dynamically generate sql based on whether the query field is empty.
                 <target>${maven.compiler.target}</target>
                 <annotationProcessorPaths>
                     <path>
-                        <groupId>io.github.holmofy.data.jdbc</groupId>
-                        <artifactId>criteria-apt</artifactId>
+                        <groupId>io.github.holmofy</groupId>
+                        <artifactId>spring-data-jdbc-criteria-apt</artifactId>
                         <version>3.0.0</version>
                     </path>
                     <!-- other apt plugin -->
