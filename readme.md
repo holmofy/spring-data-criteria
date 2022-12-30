@@ -1,5 +1,7 @@
 `Spring Data Jdbc Criteria` extends Spring Data JDBC to support dynamic sql. like this:
 
+[![Build Status(https://github.com/holmofy/spring-data-jdbc-criteria/actions/workflows/package.yaml/badge.svg)](https://github.com/holmofy/spring-data-jdbc-criteria/actions/workflows/package.yaml/badge.svg)](https://repo1.maven.org/maven2/io/github/holmofy/)
+
 ```java
 default Page<User> searchByQuery(UserQuery query, Pageable pageable) {
     return findAll(Criteria.from(eq(User_.province, query.province))
