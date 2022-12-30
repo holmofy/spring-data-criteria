@@ -5,8 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <scm>
-        <url>git@github.com:holmofy/spring-data-jdbc-criteria.git</url>
+        <url>https://github.com/holmofy/spring-data-jdbc-criteria.git</url>
+        <connection>git@github.com:holmofy/spring-data-jdbc-criteria.git</connection>
+        <developerConnection>https://github.com/holmofy</developerConnection>
     </scm>
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/holmofy/spring-data-jdbc-criteria/issues</url>
+    </issueManagement>
     <developers>
         <developer>
             <id>holmofy</id>
@@ -91,6 +97,16 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                </configuration>
             </plugin>
         </plugins>
     </build>
