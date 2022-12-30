@@ -4,6 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
+    <name>spring-data-jdbc-criteria</name>
+    <description>Spring Data Jdbc Criteria extends Spring Data JDBC to support dynamic sql.</description>
+    <url>https://github.com/holmofy/spring-data-jdbc-criteria</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <scm>
         <url>https://github.com/holmofy/spring-data-jdbc-criteria.git</url>
         <connection>git@github.com:holmofy/spring-data-jdbc-criteria.git</connection>
