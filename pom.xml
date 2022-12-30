@@ -17,9 +17,9 @@
         </developer>
     </developers>
     <modules>
-        <module>criteria-apt</module>
-        <module>criteria-core</module>
-        <module>criteria-example</module>
+        <module>spring-data-jdbc-criteria-apt</module>
+        <module>spring-data-jdbc-criteria-core</module>
+        <module>spring-data-jdbc-criteria-example</module>
     </modules>
 
     <parent>
