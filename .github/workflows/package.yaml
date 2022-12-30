@@ -23,17 +23,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
-
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
-
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "v${{ github.event.inputs.version }}"
-          prerelease: false
-          files: |
-            LICENSE.txt
-            **/target/criteria-*.jar
+          server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
+          server-username: ${{secrets.MAVEN_USERNAME}}
+          server-password: ${{secrets.MAVEN_PASSWORD}}
+          gpg-private-key: ${{secrets.GPG_PRIVATE_KEY}}
+          gpg-passphrase: ${{secrets.GPG_PASSPHRASE}}
+      - name: Publish Package
+        run: mvn --batch-mode clean deploy
+        env:
+          MAVEN_USERNAME: ${{secrets.MAVEN_USERNAME}}
+          MAVEN_PASSWORD: ${{secrets.MAVEN_PASSWORD}}
+          GPG_PASSPHRASE: ${{secrets.GPG_PASSPHRASE}}
