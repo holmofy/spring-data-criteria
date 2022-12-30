@@ -16,7 +16,7 @@
         <version>3.0.0</version>
     </parent>
 
-    <groupId>io.github.holmofy.data.jdbc</groupId>
+    <groupId>io.github.holmofy</groupId>
     <artifactId>spring-data-jdbc-criteria</artifactId>
     <version>3.0.0</version>
 
