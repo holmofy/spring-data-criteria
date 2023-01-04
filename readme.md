@@ -1,6 +1,6 @@
 [![Build Status(https://github.com/holmofy/spring-data-jdbc-criteria/actions/workflows/package.yaml/badge.svg)](https://github.com/holmofy/spring-data-jdbc-criteria/actions/workflows/package.yaml/badge.svg)](https://repo1.maven.org/maven2/io/github/holmofy/)
 
-`Spring Data Jdbc Criteria` extends Spring Data JDBC to support dynamic sql. like this:
+`Spring Data Jdbc Criteria` extends Spring Data JDBC to support dynamic sql. to see [`DATAJDBC-319`](https://github.com/spring-projects/spring-data-relational/issues/542). like this:
 
 ```java
 default Page<User> searchByQuery(UserQuery query, Pageable pageable) {
