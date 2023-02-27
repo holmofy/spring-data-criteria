@@ -3,13 +3,15 @@
 `Spring Data Jdbc Criteria` extends Spring Data JDBC to support dynamic sql. to see [`DATAJDBC-319`](https://github.com/spring-projects/spring-data-relational/issues/542). The usage is as follows:
 
 ```java
-default Page<User> searchByQuery(UserQuery query, Pageable pageable) {
-    return findAll(Criteria.from(eq(User_.province, query.province))
-                    .and(eq(User_.city, query.city))
-                    .and(like(User_.area, query.area))
-                    .and(like(User_.name, query.nick))
-                    .and(between(User_.created, query.createFrom, query.createTo))
-            , pageable);
+public interface UserDao extends ListCrudRepository<User, Long>, CriteriaExecutor<User> {
+    default Page<User> searchByQuery(UserQuery query, Pageable pageable) {
+        return findAll(Criteria.from(eq(User_.province, query.province))
+                        .and(eq(User_.city, query.city))
+                        .and(like(User_.area, query.area))
+                        .and(like(User_.name, query.nick))
+                        .and(between(User_.created, query.createFrom, query.createTo))
+                , pageable);
+    }
 }
 ```
 
@@ -106,7 +108,7 @@ public class User {
 ```
 2)、Dao interface
 ```java
-public interface UserDao extends ListCrudRepository<User, Long>, CriteriaExecutor<User> {
+public interface UserDao extends ListCrudRepository<User, Long>, CriteriaExecutor<User>, JdbcSupport {
 
     default Page<User> searchByQuery(UserQuery query, Pageable pageable) {
         return findAll(Criteria.from(MoreCriteria.eq(User_.province, query.province))
@@ -115,6 +117,18 @@ public interface UserDao extends ListCrudRepository<User, Long>, CriteriaExecuto
                         .and(MoreCriteria.like(User_.name, query.nick))
                         .and(MoreCriteria.between(User_.created, query.createFrom, query.createTo))
                 , pageable);
+    }
+
+    default List<User> searchByQuery(UserQuery query) {
+        return namedJdbcTemplate().queryForList(
+                "select * " +
+                        "from  t_user " +
+                        "where 1=1 " +
+                        (query.province == null ? "" : "and province=:province ") +
+                        (query.city == null ? "" : "and city=:city ") +
+                        (query.area == null ? "" : "and area=:area ") +
+                        (query.nick == null ? "" : "and nick=:nick ")
+                , new BeanPropertySqlParameterSource(query), User.class);
     }
 
     @Data
