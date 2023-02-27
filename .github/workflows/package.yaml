@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
     inputs:
   paths:
-    spring-data-jdbc-criteria-apt/**
-    spring-data-jdbc-criteria-core/**
+    - 'spring-data-jdbc-criteria-apt/**'
+    - 'spring-data-jdbc-criteria-core/**'
 
 jobs:
   release:
