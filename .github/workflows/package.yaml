@@ -4,11 +4,13 @@
 name: Maven Package
 
 on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'spring-data-jdbc-criteria-apt/**'
+      - 'spring-data-jdbc-criteria-core/**'
   workflow_dispatch:
     inputs:
-  paths:
-    - 'spring-data-jdbc-criteria-apt/**'
-    - 'spring-data-jdbc-criteria-core/**'
 
 jobs:
   release:
