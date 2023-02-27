@@ -40,13 +40,14 @@
 
     <groupId>io.github.holmofy</groupId>
     <artifactId>spring-data-jdbc-criteria</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.data.version>3.0.0</spring.data.version>
+        <reversion>3.0.1</reversion>
     </properties>
 
     <dependencyManagement>

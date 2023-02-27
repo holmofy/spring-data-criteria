@@ -5,7 +5,7 @@
     <parent>
         <groupId>io.github.holmofy</groupId>
         <artifactId>spring-data-jdbc-criteria</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>io.github.holmofy</groupId>
             <artifactId>spring-data-jdbc-criteria-core</artifactId>
-            <version>3.0.0</version>
+            <version>${reversion}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -80,7 +80,7 @@
                         <path>
                             <groupId>io.github.holmofy</groupId>
                             <artifactId>spring-data-jdbc-criteria-apt</artifactId>
-                            <version>3.0.0</version>
+                            <version>${reversion}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

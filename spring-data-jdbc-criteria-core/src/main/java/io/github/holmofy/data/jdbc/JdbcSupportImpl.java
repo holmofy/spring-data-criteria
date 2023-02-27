@@ -10,11 +10,16 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class JdbcSupportImpl implements JdbcSupport {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final JdbcAggregateTemplate jdbcAggregateTemplate;
+
+    public JdbcSupportImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
+                           JdbcAggregateTemplate jdbcAggregateTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.jdbcAggregateTemplate = jdbcAggregateTemplate;
+    }
 
     @Override
     public JdbcOperations jdbcTemplate() {
