@@ -36,7 +36,7 @@ public class MoreCriteria {
 
     public static <T> Criteria between(String column, T begin, T end) {
         if (begin == null && end == null) {
-            return null;
+            return Criteria.empty();
         }
         if (begin != null && end != null) {
             return Criteria.where(column).between(begin, end);
