@@ -108,8 +108,12 @@ public class User {
 ```
 2)、Dao interface
 ```java
-public interface UserDao extends ListCrudRepository<User, Long>, CriteriaExecutor<User>, JdbcSupport {
+public interface UserDao extends ListCrudRepository<User, Long>, 
+              CriteriaExecutor<User>, JdbcSupport {
 
+    /**
+     * Criteria example
+     */
     default Page<User> searchByQuery(UserQuery query, Pageable pageable) {
         return findAll(Criteria.from(MoreCriteria.eq(User_.province, query.province))
                         .and(MoreCriteria.eq(User_.city, query.city))
@@ -119,6 +123,9 @@ public interface UserDao extends ListCrudRepository<User, Long>, CriteriaExecuto
                 , pageable);
     }
 
+    /**
+     * Jdbc support example
+     */
     default List<User> searchByQuery(UserQuery query) {
         return namedJdbcTemplate().queryForList(
                 "select * " +
