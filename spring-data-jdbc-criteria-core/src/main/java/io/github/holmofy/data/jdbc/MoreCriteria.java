@@ -2,6 +2,10 @@ package io.github.holmofy.data.jdbc;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.data.relational.core.query.Criteria;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 @UtilityClass
 public class MoreCriteria {
@@ -46,6 +50,24 @@ public class MoreCriteria {
 
     public static <T> Criteria like(String column, T obj) {
         return obj == null ? Criteria.empty() : Criteria.where(column).like(obj);
+    }
+
+    @SafeVarargs
+    public static <T> Criteria in(String column, T... objs) {
+        return objs == null ? Criteria.empty() : Criteria.where(column).in(Arrays.asList(objs));
+    }
+
+    @SafeVarargs
+    public static <T> Criteria notIn(String column, T... objs) {
+        return objs == null ? Criteria.empty() : Criteria.where(column).notIn(Arrays.asList(objs));
+    }
+
+    public static <T> Criteria in(String column, Collection<T> collection) {
+        return CollectionUtils.isEmpty(collection) ? Criteria.empty() : Criteria.where(column).in(collection);
+    }
+
+    public static <T> Criteria notIn(String column, Collection<T> collection) {
+        return CollectionUtils.isEmpty(collection) ? Criteria.empty() : Criteria.where(column).notIn(collection);
     }
 
 }

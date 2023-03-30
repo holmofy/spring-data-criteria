@@ -24,7 +24,7 @@ It will dynamically generate sql based on whether the query field is empty.
 <dependency>
     <groupId>io.github.holmofy</groupId>
     <artifactId>spring-data-jdbc-criteria-core</artifactId>
-    <version>3.0.1</version>
+    <version>3.0.2</version>
 </dependency>
 ```
 
@@ -43,7 +43,7 @@ It will dynamically generate sql based on whether the query field is empty.
                     <path>
                         <groupId>io.github.holmofy</groupId>
                         <artifactId>spring-data-jdbc-criteria-apt</artifactId>
-                        <version>3.0.1</version>
+                        <version>3.0.2</version>
                     </path>
                     <!-- other apt plugin -->
                     <path>
