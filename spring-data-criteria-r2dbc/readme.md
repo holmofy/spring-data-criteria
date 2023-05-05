@@ -5,7 +5,7 @@
 <dependency>
     <groupId>io.github.holmofy</groupId>
     <artifactId>spring-data-criteria-r2dbc</artifactId>
-    <version>3.0.2</version>
+    <version>${latest-version}</version>
 </dependency>
 ```
 
@@ -24,7 +24,7 @@
                     <path>
                         <groupId>io.github.holmofy</groupId>
                         <artifactId>spring-data-criteria-apt</artifactId>
-                        <version>3.0.2</version>
+                        <version>${latest-version}</version>
                     </path>
                     <!-- other apt plugin -->
                     <path>
@@ -150,6 +150,6 @@ public class UserController {
 }
 ```
 
-The complete example is [here](https://github.com/holmofy/spring-data-jdbc-criteria/tree/master/spring-data-criteria-example/spring-data-criteria-r2dbc-example).
+The complete example is [here](../spring-data-criteria-example/spring-data-criteria-r2dbc-example).
 
 If you think it's good, please give this project a star.
