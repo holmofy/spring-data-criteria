@@ -66,7 +66,7 @@ public class MainApplication {
 }
 ```
 
-**NOTE: These two issues [spring-data-commons/issues/1846](https://github.com/spring-projects/spring-data-commons/issues/1846) & [spring-boot/issues/20701](https://github.com/spring-projects/spring-boot/issues/20701) can track the progress of WebFlux's support for Pageable **
+**NOTE: These two issues [spring-data-commons/issues/1846](https://github.com/spring-projects/spring-data-commons/issues/1846) & [spring-boot/issues/20701](https://github.com/spring-projects/spring-boot/issues/20701) can track the progress of WebFlux's support for `Pageable`**
 
 4、use dynamic sql
 
