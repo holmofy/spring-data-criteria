@@ -1,38 +1,10 @@
-[![Build Status(https://github.com/holmofy/spring-data-jdbc-criteria/actions/workflows/package.yaml/badge.svg)](https://github.com/holmofy/spring-data-jdbc-criteria/actions/workflows/package.yaml/badge.svg)](https://repo1.maven.org/maven2/io/github/holmofy/)
-
-`Spring Data Criteria` extends Spring Data JDBC & Spring Data R2DBC to support dynamic sql. to see [`DATAJDBC-319`](https://github.com/spring-projects/spring-data-relational/issues/542). The usage is as follows:
-
-```java
-public interface UserDao extends ListCrudRepository<User, Long>, CriteriaExecutor<User> {
-    default Page<User> searchByQuery(UserQuery query, Pageable pageable) {
-        return findAll(Criteria.from(eq(User_.province, query.province))
-                        .and(eq(User_.city, query.city))
-                        .and(like(User_.area, query.area))
-                        .and(like(User_.name, query.nick))
-                        .and(between(User_.created, query.createFrom, query.createTo))
-                , pageable);
-    }
-}
-```
-
-It will dynamically generate sql based on whether the query field is empty.
-
-## How to use 
+## How to use
 
 1、add dependency
 ```xml
 <dependency>
     <groupId>io.github.holmofy</groupId>
     <artifactId>spring-data-criteria-jdbc</artifactId>
-    <version>3.0.2</version>
-</dependency>
-```
-
-If using `spring-data-r2dbc`:
-```xml
-<dependency>
-    <groupId>io.github.holmofy</groupId>
-    <artifactId>spring-data-criteria-r2dbc</artifactId>
     <version>3.0.2</version>
 </dependency>
 ```
@@ -67,9 +39,7 @@ If using `spring-data-r2dbc`:
 </build>
 ```
 
-3、config 
-
-1). Spring Data Jdbc: `@EnableJdbcRepositories(repositoryBaseClass = EnhancedJdbcRepository.class)`
+3、config Spring Data Jdbc: `@EnableJdbcRepositories(repositoryBaseClass = EnhancedJdbcRepository.class)`
 
 ```java
 @SpringBootApplication
@@ -82,7 +52,6 @@ public class MainApplication {
 
 }
 ```
-2). Spring Data R2DBC: `@EnableR2dbcRepositories(repositoryBaseClass = EnhancedR2dbcRepository.class)`
 
 4、use dynamic sql
 
@@ -98,7 +67,6 @@ public class User {
     @Column("nick")
     private String name;
 
-    // NOTE: spring-data-r2dbc currently does not support @Embedded 
     @Embedded.Empty
     private Address address;
 
@@ -178,6 +146,6 @@ public class UserController {
 }
 ```
 
-The complete example is [here](https://github.com/holmofy/spring-data-jdbc-criteria/tree/master/spring-data-jdbc-criteria-example).
+The complete example is [here](https://github.com/holmofy/spring-data-jdbc-criteria/tree/master/spring-data-criteria-example/spring-data-criteria-jdbc-example).
 
 If you think it's good, please give this project a star.
