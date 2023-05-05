@@ -7,8 +7,8 @@ on:
   push:
     branches: [ master ]
     paths:
-      - 'spring-data-jdbc-criteria-apt/**'
-      - 'spring-data-jdbc-criteria-core/**'
+      - '**/*.java'
+      - '**/*.pom'
   workflow_dispatch:
     inputs:
 
