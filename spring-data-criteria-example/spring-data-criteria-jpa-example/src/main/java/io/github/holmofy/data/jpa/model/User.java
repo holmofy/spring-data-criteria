@@ -15,14 +15,17 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "t_user_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "nick")
     private String name;
 
-    @Embedded
-    private Address address;
+    // NOTE: jpamodelgen currently does not support @Embedded
+    private String province;
+    private String city;
+    private String area;
 
     @CreatedDate
     @Column(name = "created_date")
@@ -32,12 +35,5 @@ public class User {
     @Column(name = "last_modified_date")
     private LocalDateTime modified;
 
-    @Data
-    @Embeddable
-    public static class Address {
-        private String province;
-        private String city;
-        private String area;
-    }
 
 }
