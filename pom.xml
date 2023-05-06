@@ -39,6 +39,7 @@
         <module>spring-data-criteria-r2dbc</module>
         <module>spring-data-criteria-example</module>
         <module>spring-data-criteria-relational</module>
+        <module>spring-data-criteria-jpa</module>
     </modules>
 
     <groupId>io.github.holmofy</groupId>

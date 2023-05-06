@@ -15,5 +15,6 @@
     <modules>
         <module>spring-data-criteria-jdbc-example</module>
         <module>spring-data-criteria-r2dbc-example</module>
+        <module>spring-data-criteria-jpa-example</module>
     </modules>
 </project>
