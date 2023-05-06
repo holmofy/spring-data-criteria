@@ -9,7 +9,7 @@
 </dependency>
 ```
 
-2、add apt plugin. It is like `hibernate-jpamodelgen`, which will help you generate corresponding mapping fields according to the model of SpringDataJdbc
+2、add apt plugin. It is like `hibernate-jpamodelgen`, which will help you generate corresponding mapping fields according to the model of SpringData
 ```xml
 <build>
     <plugins>
