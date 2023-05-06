@@ -39,6 +39,7 @@
         <module>spring-data-criteria-r2dbc</module>
         <module>spring-data-criteria-example</module>
         <module>spring-data-criteria-relational</module>
+        <module>spring-data-criteria-jpa</module>
     </modules>
 
     <groupId>io.github.holmofy</groupId>
@@ -49,8 +50,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.boot.version>3.0.5</spring.boot.version>
-        <reversion>3.0.5</reversion>
+        <spring.boot.version>3.0.6</spring.boot.version>
+        <reversion>3.0.6</reversion>
     </properties>
 
     <dependencyManagement>

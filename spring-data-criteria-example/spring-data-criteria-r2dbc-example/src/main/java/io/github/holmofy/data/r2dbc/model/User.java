@@ -20,8 +20,10 @@ public class User {
     @Column("nick")
     private String name;
 
-    @Embedded.Empty
-    private Address address;
+    // NOTE: spring-data-r2dbc currently does not support @Embedded
+    private String province;
+    private String city;
+    private String area;
 
     @CreatedDate
     @Column("created_date")
@@ -30,12 +32,5 @@ public class User {
     @LastModifiedDate
     @Column("last_modified_date")
     private LocalDateTime modified;
-
-    @Data
-    public static class Address {
-        private String province;
-        private String city;
-        private String area;
-    }
 
 }
