@@ -9,6 +9,8 @@
 </dependency>
 ```
 
+Find the latest version [here](https://repo1.maven.org/maven2/io/github/holmofy/)
+
 2、add apt plugin: `hibernate-jpamodelgen`
 ```xml
 <build>
