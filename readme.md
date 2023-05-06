@@ -1,6 +1,10 @@
 [![Build Status(https://github.com/holmofy/spring-data-jdbc-criteria/actions/workflows/package.yaml/badge.svg)](https://github.com/holmofy/spring-data-jdbc-criteria/actions/workflows/package.yaml/badge.svg)](https://repo1.maven.org/maven2/io/github/holmofy/)
 
-`Spring Data Criteria` extends Spring Data JDBC & Spring Data R2DBC to support dynamic sql. to see [`DATAJDBC-319`](https://github.com/spring-projects/spring-data-relational/issues/542). The usage is as follows:
+`Spring Data Criteria` extends Spring Data JDBC & Spring Data R2DBC to support dynamic sql. 
+
+to see [`DATAJDBC-319`](https://github.com/spring-projects/spring-data-relational/issues/542), [`DATAJPA-2724`](https://github.com/spring-projects/spring-data-jpa/issues/2724).
+
+The usage is as follows:
 
 ```java
 public interface UserDao extends ListCrudRepository<User, Long>, CriteriaExecutor<User> {
