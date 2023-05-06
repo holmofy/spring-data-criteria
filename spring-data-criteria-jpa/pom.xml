@@ -5,17 +5,11 @@
     <parent>
         <artifactId>spring-data-criteria</artifactId>
         <groupId>io.github.holmofy</groupId>
-        <version>3.0.5</version>
+        <version>${reversion}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-data-criteria-jpa</artifactId>
-
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>

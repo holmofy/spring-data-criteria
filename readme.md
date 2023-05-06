@@ -20,4 +20,5 @@ It will dynamically generate sql based on whether the query field is empty.
 ## How to use 
 
 * Using it in [spring-data-jdbc](./spring-data-criteria-jdbc)
+* Using it in [spring-data-jpa](./spring-data-criteria-jpa)
 * Using it in [spring-data-r2dbc](./spring-data-criteria-r2dbc)
