@@ -26,7 +26,7 @@ Find the latest version [here](https://repo1.maven.org/maven2/io/github/holmofy/
                     <path>
                         <groupId>io.github.holmofy</groupId>
                         <artifactId>spring-data-criteria-apt</artifactId>
-                        <version>3.0.2</version>
+                        <version>${latest-version}</version>
                     </path>
                     <!-- other apt plugin -->
                     <path>
