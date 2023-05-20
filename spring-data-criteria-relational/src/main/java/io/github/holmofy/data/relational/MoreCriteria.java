@@ -48,8 +48,12 @@ public class MoreCriteria {
         return begin == null ? lte(column, end) : gte(column, begin);
     }
 
-    public static <T> Criteria like(String column, T obj) {
-        return obj == null ? Criteria.empty() : Criteria.where(column).like(obj);
+    public static <T extends CharSequence> Criteria like(String column, T obj) {
+        return obj == null || obj.length() == 0 ? Criteria.empty() : Criteria.where(column).like("%" + escapeLikeClause(obj) + "%");
+    }
+
+    public static <T extends CharSequence> Criteria startWith(String column, T obj) {
+        return obj == null || obj.length() == 0 ? Criteria.empty() : Criteria.where(column).like(escapeLikeClause(obj) + "%");
     }
 
     @SafeVarargs
@@ -68,6 +72,10 @@ public class MoreCriteria {
 
     public static <T> Criteria notIn(String column, Collection<T> collection) {
         return CollectionUtils.isEmpty(collection) ? Criteria.empty() : Criteria.where(column).notIn(collection);
+    }
+
+    private static String escapeLikeClause(CharSequence expression) {
+        return expression.toString().replaceAll("[_%\\\\]", "\\\\$1");
     }
 
 }
