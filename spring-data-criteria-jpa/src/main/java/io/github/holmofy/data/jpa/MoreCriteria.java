@@ -73,6 +73,11 @@ public class MoreCriteria {
     }
 
     @Nullable
+    public static <T> Specification<T> startWith(SingularAttribute<T, String> attr, String value) {
+        return isNullOrEmpty(value) ? null : (root, query, cb) -> cb.like(root.get(attr), escapeLikeClause(value) + "%");
+    }
+
+    @Nullable
     public static <T> Specification<T> in(SingularAttribute<T, ?> attr, Collection<?> values) {
         return isNullOrEmpty(values) ? null : (root, query, cb) -> cb.isTrue(root.get(attr).in(values));
     }
@@ -90,4 +95,7 @@ public class MoreCriteria {
         return obj == null || obj instanceof String && ((String) obj).isEmpty();
     }
 
+    private static String escapeLikeClause(CharSequence expression) {
+        return expression.toString().replace("%", "\\%").replace("_", "\\_");
+    }
 }

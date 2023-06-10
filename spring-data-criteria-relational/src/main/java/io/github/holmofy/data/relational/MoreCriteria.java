@@ -49,7 +49,7 @@ public class MoreCriteria {
     }
 
     public static <T extends CharSequence> Criteria like(String column, T obj) {
-        return obj == null || obj.length() == 0 ? Criteria.empty() : Criteria.where(column).like("%" + escapeLikeClause(obj) + "%");
+        return obj == null || obj.length() == 0 ? Criteria.empty() : Criteria.where(column).like(obj);
     }
 
     public static <T extends CharSequence> Criteria startWith(String column, T obj) {
@@ -75,7 +75,7 @@ public class MoreCriteria {
     }
 
     private static String escapeLikeClause(CharSequence expression) {
-        return expression.toString().replaceAll("[_%\\\\]", "\\\\$1");
+        return expression.toString().replace("%", "\\%").replace("_", "\\_");
     }
 
 }
