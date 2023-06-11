@@ -2,10 +2,7 @@ package io.github.holmofy.data.apt;
 
 import com.google.common.base.CaseFormat;
 import com.google.common.base.Converter;
-import com.squareup.javapoet.ClassName;
-import com.squareup.javapoet.FieldSpec;
-import com.squareup.javapoet.JavaFile;
-import com.squareup.javapoet.TypeSpec;
+import com.squareup.javapoet.*;
 import lombok.Data;
 import lombok.SneakyThrows;
 import org.springframework.data.annotation.Transient;
@@ -14,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Embedded;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.processing.Generated;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.*;
 import javax.lang.model.type.TypeMirror;
@@ -84,6 +82,14 @@ public class CriteriaGenerator {
         public JavaFile generateSource() {
             TypeSpec.Builder builder = TypeSpec.classBuilder(getGenerateClassName())
                     .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
+
+            /**
+             * @Generated(value = "io.github.holmofy.data.apt.SpringDataRelationalAnnotationProcessor")
+             */
+            builder.addAnnotation(AnnotationSpec.builder(Generated.class)
+                    .addMember("value", "$S", SpringDataRelationalAnnotationProcessor.class.getCanonicalName())
+                    .build()
+            );
 
             // table name
             String tableName = getTableName();

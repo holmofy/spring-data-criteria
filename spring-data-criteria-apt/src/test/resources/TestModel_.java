@@ -1,7 +1,9 @@
 package io.github.holmofy.example;
 
 import java.lang.String;
+import javax.annotation.processing.Generated;
 
+@Generated("io.github.holmofy.data.apt.SpringDataRelationalAnnotationProcessor")
 public final class TestModel_ {
     public static final String TABLE = "test_model";
     public static final String id = "id";
