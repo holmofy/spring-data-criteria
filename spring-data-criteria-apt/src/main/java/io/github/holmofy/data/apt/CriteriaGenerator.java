@@ -144,13 +144,15 @@ public class CriteriaGenerator {
 
         private String getTableName() {
             Table annotation = classElement.getAnnotation(Table.class);
-            if (annotation == null) {
-                return columnConverter.convert(classElement.getSimpleName().toString());
+            if (annotation != null) {
+                if (StringUtils.hasLength(annotation.name())) {
+                    return annotation.name();
+                }
+                if (StringUtils.hasLength(annotation.value())) {
+                    return annotation.value();
+                }
             }
-            if (StringUtils.hasLength(annotation.name())) {
-                return annotation.name();
-            }
-            return annotation.value();
+            return columnConverter.convert(classElement.getSimpleName().toString());
         }
     }
 
