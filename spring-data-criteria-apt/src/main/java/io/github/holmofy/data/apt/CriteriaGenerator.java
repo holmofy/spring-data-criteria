@@ -11,6 +11,8 @@ import lombok.SneakyThrows;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Embedded;
+import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.*;
@@ -72,7 +74,6 @@ public class CriteriaGenerator {
         public static final String SPRING_DATA_PACKAGE = "org.springframework.data.relational.core.sql";
 
         private static final Converter<String, String> columnConverter = CaseFormat.LOWER_CAMEL.converterTo(CaseFormat.LOWER_UNDERSCORE);
-        private static final Converter<String, String> tableConverter = CaseFormat.UPPER_CAMEL.converterTo(CaseFormat.LOWER_CAMEL);
 
         private PackageElement packageElement;
 
@@ -83,6 +84,12 @@ public class CriteriaGenerator {
         public JavaFile generateSource() {
             TypeSpec.Builder builder = TypeSpec.classBuilder(getGenerateClassName())
                     .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
+
+            // table name
+            String tableName = getTableName();
+            builder.addField(FieldSpec.builder(
+                    ClassName.get("java.lang", "String"), "TABLE", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL
+            ).initializer("$S", tableName).build());
 
             addFields(builder, this.fields, "");
 
@@ -127,6 +134,17 @@ public class CriteriaGenerator {
 
         public String getGenerateClassName() {
             return classElement.getSimpleName() + "_";
+        }
+
+        private String getTableName() {
+            Table annotation = classElement.getAnnotation(Table.class);
+            if (annotation == null) {
+                return columnConverter.convert(classElement.getSimpleName().toString());
+            }
+            if (StringUtils.hasLength(annotation.name())) {
+                return annotation.name();
+            }
+            return annotation.value();
         }
     }
 
