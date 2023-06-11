@@ -48,14 +48,46 @@ public class EnhancedR2dbcRepository<T, ID> extends SimpleR2dbcRepository<T, ID>
     }
 
     @Override
+    public <P> Mono<P> findOne(CriteriaDefinition criteria, Class<P> projection) {
+        return entityOperations.select(entity.getJavaType())
+                .from(entity.getTableName())
+                .as(projection)
+                .matching(Query.query(criteria))
+                .one();
+    }
+
+    @Override
+    public <P> Flux<P> findAll(CriteriaDefinition criteria, Class<P> projection) {
+        return entityOperations.select(entity.getJavaType())
+                .from(entity.getTableName())
+                .as(projection)
+                .matching(Query.query(criteria))
+                .all();
+    }
+
+    @Override
     public Mono<Long> count(CriteriaDefinition criteria) {
         return entityOperations.count(Query.query(criteria), entity.getJavaType());
     }
 
     @Override
     public Mono<Page<T>> findAll(CriteriaDefinition criteria, Pageable pageable) {
-        Mono<Long> count = count(criteria);
-        Mono<List<T>> list = entityOperations.select(Query.query(criteria).with(pageable), entity.getJavaType())
+        Query query = Query.query(criteria);
+        Mono<Long> count = entityOperations.count(query, entity.getJavaType());
+        Mono<List<T>> list = entityOperations.select(query.with(pageable), entity.getJavaType())
+                .collectList();
+        return Mono.zip(list, count).map(tuple -> new PageImpl<>(tuple.getT1(), pageable, tuple.getT2()));
+    }
+
+    @Override
+    public <P> Mono<Page<P>> findAll(CriteriaDefinition criteria, Pageable pageable, Class<P> projection) {
+        Query query = Query.query(criteria);
+        Mono<Long> count = entityOperations.count(query, entity.getJavaType());
+        Mono<List<P>> list = entityOperations.select(entity.getJavaType())
+                .from(entity.getTableName())
+                .as(projection)
+                .matching(query.with(pageable))
+                .all()
                 .collectList();
         return Mono.zip(list, count).map(tuple -> new PageImpl<>(tuple.getT1(), pageable, tuple.getT2()));
     }

@@ -26,6 +26,16 @@ public interface CriteriaExecutor<T> {
     Flux<T> findAll(CriteriaDefinition criteria);
 
     /**
+     * @see R2dbcEntityTemplate#select(Class)
+     */
+    <P> Mono<P> findOne(CriteriaDefinition criteria, Class<P> projection);
+
+    /**
+     * @see R2dbcEntityTemplate#select(Class)
+     */
+    <P> Flux<P> findAll(CriteriaDefinition criteria, Class<P> projection);
+
+    /**
      * @see R2dbcEntityTemplate#count(Query, Class)
      */
     Mono<Long> count(CriteriaDefinition criteria);
@@ -34,5 +44,10 @@ public interface CriteriaExecutor<T> {
      * @see R2dbcEntityTemplate#select(Query, Class)
      */
     Mono<Page<T>> findAll(CriteriaDefinition criteria, Pageable pageable);
+
+    /**
+     * @see R2dbcEntityTemplate#select(Query, Class)
+     */
+    <P> Mono<Page<P>> findAll(CriteriaDefinition criteria, Pageable pageable, Class<P> projection);
 
 }
