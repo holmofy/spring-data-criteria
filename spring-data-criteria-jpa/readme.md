@@ -9,7 +9,7 @@
 </dependency>
 ```
 
-Find the latest version [here](https://repo1.maven.org/maven2/io/github/holmofy/)
+Find the latest version [here](https://repo1.maven.org/maven2/io/github/holmofy/spring-data-criteria-jpa)
 
 2、add apt plugin: `hibernate-jpamodelgen`
 ```xml
