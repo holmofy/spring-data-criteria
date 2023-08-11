@@ -9,7 +9,7 @@
 </dependency>
 ```
 
-Find the latest version [here](https://repo1.maven.org/maven2/io/github/holmofy/)
+Find the latest version [here](https://repo1.maven.org/maven2/io/github/holmofy/spring-data-criteria-jdbc)
 
 2、add apt plugin. It is like `hibernate-jpamodelgen`, which will help you generate corresponding mapping fields according to the model of SpringData
 ```xml
