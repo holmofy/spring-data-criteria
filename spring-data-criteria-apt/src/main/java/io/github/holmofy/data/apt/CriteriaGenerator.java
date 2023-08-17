@@ -60,6 +60,9 @@ public class CriteriaGenerator {
             return null;
         }
         VariableElement f = (VariableElement) field;
+        if (f.getModifiers().contains(Modifier.STATIC)) {
+            return null;
+        }
         if (f.getAnnotation(Transient.class) != null) {
             return null;
         }
