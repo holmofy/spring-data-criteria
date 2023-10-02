@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Embedded;
 import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.relational.core.sql.SQL;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.processing.Generated;
@@ -74,7 +75,8 @@ public class CriteriaGenerator {
 
         public static final String SPRING_DATA_PACKAGE = "org.springframework.data.relational.core.sql";
 
-        private static final Converter<String, String> columnConverter = CaseFormat.LOWER_CAMEL.converterTo(CaseFormat.LOWER_UNDERSCORE);
+        private static final Converter<String, String> LOWER_UNDERSCORE = CaseFormat.LOWER_CAMEL.converterTo(CaseFormat.LOWER_UNDERSCORE);
+        private static final Converter<String, String> UPPER_UNDERSCORE = CaseFormat.LOWER_CAMEL.converterTo(CaseFormat.UPPER_UNDERSCORE);
 
         private PackageElement packageElement;
 
@@ -97,8 +99,11 @@ public class CriteriaGenerator {
             // table name
             String tableName = getTableName();
             builder.addField(FieldSpec.builder(
-                    ClassName.get("java.lang", "String"), "TABLE", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL
+                    ClassName.get(String.class), "TABLE_NAME", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL
             ).initializer("$S", tableName).build());
+            builder.addField(FieldSpec.builder(
+                    ClassName.get(org.springframework.data.relational.core.sql.Table.class), "TABLE", Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL
+            ).initializer("$T.table(TABLE_NAME)", SQL.class).build());
 
             addFields(builder, this.fields, "");
 
@@ -135,10 +140,14 @@ public class CriteriaGenerator {
             String column_name = Optional.of(field).map(f -> f.getAnnotation(Column.class))
                     .map(Column::value)
                     .filter(s -> !s.isBlank())
-                    .orElse(columnConverter.convert(fieldName));
+                    .orElse(LOWER_UNDERSCORE.convert(fieldName));
             builder.addField(FieldSpec.builder(
-                    ClassName.get("java.lang", "String"), fieldName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL
+                    ClassName.get(String.class), fieldName, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL
             ).initializer("$S", columnPrefix + column_name).build());
+            String COLUMN_NAME = Objects.requireNonNull(UPPER_UNDERSCORE.convert(fieldName));
+            builder.addField(FieldSpec.builder(
+                    ClassName.get(org.springframework.data.relational.core.sql.Column.class), COLUMN_NAME, Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL
+            ).initializer("$T.column($L, TABLE)", SQL.class, fieldName).build());
         }
 
         public String getGenerateClassName() {
@@ -155,7 +164,7 @@ public class CriteriaGenerator {
                     return annotation.value();
                 }
             }
-            return columnConverter.convert(classElement.getSimpleName().toString());
+            return LOWER_UNDERSCORE.convert(classElement.getSimpleName().toString());
         }
     }
 

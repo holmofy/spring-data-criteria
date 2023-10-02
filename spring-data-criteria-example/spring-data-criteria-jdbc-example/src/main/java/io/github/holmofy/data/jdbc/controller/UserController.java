@@ -21,9 +21,14 @@ public class UserController {
         return userDao.searchByQuery(query, pageable);
     }
 
-    @GetMapping("/search-list")
-    public List<User> search(UserDao.UserQuery query) {
-        return userDao.searchByQuery(query);
+    @GetMapping("/search-list1")
+    public List<User> search1(UserDao.UserQuery query) {
+        return userDao.searchByQuery1(query);
+    }
+
+    @GetMapping("/search-list2")
+    public List<User> search2(UserDao.UserQuery query) {
+        return userDao.searchByQuery2(query);
     }
 
 }
